@@ -60,6 +60,9 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+      
+    - name: Overclock Patch
+      run: cd openwrt && wget https://raw.githubusercontent.com/xcyupeng/Onekey_OpenWrt/main/devices/redmi-ac2100/patches/overclock-mt7621.patch && patch -p1 <overclock-mt7621.patch  -E --forward --no-backup-if-mismatch
 
     - name: Load custom feeds
       run: |
